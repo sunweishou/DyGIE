@@ -1,3 +1,5 @@
+# 这是一个分支版本，目的是用于处理ACE2005数据集的中文数据
+
 # DyGIE (Under Construction)
 
 This repository contains code and models for replicating results from the following publication:
