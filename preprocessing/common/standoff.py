@@ -61,6 +61,10 @@ while orgidx < orglen and newidx < newlen:
         newidx+=1
     elif original[orgidx] == '\t':
         orgidx+=1
+    elif newtext[newidx] == u'　':   # full-width space, for Chinese
+        newidx+=1
+    elif original[orgidx] == u'　':  # full-width space, for Chinese
+        orgidx+=1
     elif newtext[newidx] == '.':
         # ignore extra "." for stanford
         newidx+=1
