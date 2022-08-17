@@ -4,6 +4,7 @@ use utf8;
 binmode STDIN,  ":utf8";
 binmode STDOUT, ":utf8";
 use strict;
+use Encode;
 
 my $sentence_id = 0;
 my $tok_id = 0;
@@ -141,6 +142,7 @@ my $offset = 0;
 my $num_deps = 0;  ## used to skip failed sentences
 my %dep_labels = ();  ## dependency labels
 while ( my $sentence = <TXT> ) {
+    $sentence = Encode::decode("utf8", $sentence);
     my $new_offset = $offset + length( $sentence ) - 1;
     #print STDERR "$num_deps\n";
     if ( @error_sentences && $error_sentences[ 0 ] == $num_deps + 1 ) {
@@ -157,6 +159,7 @@ while ( my $sentence = <TXT> ) {
         ++$num_deps;
         my %words = ();
         while ( my $line = <DEP> ) {
+            $line = Encode::decode("utf8", $line);
             chop;
             last if $line =~ /^\s*$/;
             if ( my( $id, $surface, $base, $pos, $base_pos, $dep, $rel )
